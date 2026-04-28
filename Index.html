@@ -1,0 +1,2659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenwood Bank - Your Financial Partner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a3a2f;
+            --primary-light: #2d5a4a;
+            --accent: #c9a96e;
+            --accent-light: #e0c9a0;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --bg-light: #f8f6f3;
+            --white: #ffffff;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-hover: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(26, 58, 47, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 58, 47, 0.4);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        .btn-accent:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            position: relative;
+            height: 90vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(26, 58, 47, 0.9), rgba(26, 58, 47, 0.7));
+            z-index: 1;
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            color: var(--white);
+            width: 100%;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(201, 169, 110, 0.2);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-large {
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Rates Section */
+        .rates-section {
+            background: var(--bg-light);
+        }
+
+        .rates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .rate-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .rate-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .rate-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(201, 169, 110, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        .rate-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .rate-label {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .rate-apr {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .service-content {
+            padding: 2rem;
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .link-arrow {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s;
+        }
+
+        .link-arrow:hover {
+            gap: 1rem;
+        }
+
+        /* Promo Section */
+        .promo-section {
+            background: var(--primary);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .promo-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: rgba(201, 169, 110, 0.1);
+            border-radius: 50%;
+        }
+
+        .promo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .promo-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .promo-content p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .promo-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .promo-features li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .promo-features i {
+            color: var(--accent);
+        }
+
+        .promo-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .promo-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(26, 58, 47, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--primary);
+            font-size: 2rem;
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover .feature-icon {
+            background: var(--primary);
+            color: var(--white);
+            transform: rotateY(360deg);
+        }
+
+        .feature-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        /* App Section */
+        .app-section {
+            background: var(--bg-light);
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .app-mockup {
+            position: relative;
+        }
+
+        .app-mockup img {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            display: block;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.2));
+        }
+
+        .app-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .app-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .app-feature i {
+            color: var(--accent);
+            font-size: 1.25rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.3;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .author-info h4 {
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand .logo {
+            color: var(--white);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-brand p {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        .footer-column h4 {
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-column a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        /* Modal/Login Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 450px;
+            padding: 2.5rem;
+            position: relative;
+            animation: modalSlide 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        @keyframes modalSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: var(--primary);
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .modal-header h2 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-header p {
+            color: var(--text-light);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(201, 169, 110, 0.1);
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .forgot-password {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .btn-full {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .modal-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .modal-footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Admin Dashboard Styles */
+        .dashboard {
+            display: none;
+            min-height: 100vh;
+            background: #f0f2f5;
+        }
+
+        .dashboard.active {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: var(--primary);
+            color: var(--white);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            transition: all 0.3s;
+        }
+
+        .sidebar-header {
+            padding: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar-header .logo {
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .user-details h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .user-details p {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        .sidebar-nav {
+            padding: 1.5rem 0;
+        }
+
+        .nav-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-section-title {
+            padding: 0 1.5rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.5;
+            margin-bottom: 0.75rem;
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 0.25rem;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.875rem 1.5rem;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+            border-left-color: var(--accent);
+        }
+
+        .sidebar-nav i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 2rem;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            background: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: #f0f2f5;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            width: 300px;
+        }
+
+        .search-box input {
+            border: none;
+            background: none;
+            outline: none;
+            width: 100%;
+        }
+
+        .top-bar-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .notification-btn {
+            position: relative;
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            color: var(--text-light);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 18px;
+            height: 18px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .stat-icon.blue { background: rgba(52, 152, 219, 0.1); color: #3498db; }
+        .stat-icon.green { background: rgba(46, 204, 113, 0.1); color: #2ecc71; }
+        .stat-icon.orange { background: rgba(230, 126, 34, 0.1); color: #e67e22; }
+        .stat-icon.red { background: rgba(231, 76, 60, 0.1); color: #e74c3c; }
+
+        .stat-info h3 {
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .dashboard-card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-header h3 {
+            color: var(--primary);
+            font-size: 1.25rem;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .message-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .message-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .message-item:hover {
+            background: #f8f9fa;
+            border-color: #e0e0e0;
+        }
+
+        .message-item.unread {
+            background: rgba(201, 169, 110, 0.05);
+            border-color: rgba(201, 169, 110, 0.2);
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .message-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.25rem;
+        }
+
+        .message-header h4 {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .message-time {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .message-preview {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .message-badge {
+            background: #e74c3c;
+            color: white;
+            font-size: 0.7rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .support-chat {
+            display: none;
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 380px;
+            height: 500px;
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            z-index: 1500;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .support-chat.active {
+            display: flex;
+        }
+
+        .chat-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            font-size: 1.1rem;
+        }
+
+        .chat-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.25rem;
+            cursor: pointer;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .chat-message {
+            max-width: 80%;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .chat-message.received {
+            background: #f0f2f5;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-message.sent {
+            background: var(--primary);
+            color: var(--white);
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-input-area {
+            padding: 1rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .chat-input:focus {
+            border-color: var(--accent);
+        }
+
+        .chat-send {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .chat-send:hover {
+            background: var(--primary-light);
+            transform: scale(1.1);
+        }
+
+        .fab {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1400;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fab:hover {
+            transform: scale(1.1) rotate(90deg);
+            background: var(--primary-light);
+        }
+
+        .fab.hidden {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero h1 { font-size: 2.5rem; }
+            .promo-grid,
+            .app-grid,
+            .dashboard-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .sidebar { transform: translateX(-100%); }
+            .main-content { margin-left: 0; }
+        }
+
+        @media (max-width: 640px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2rem; }
+            .section-title { font-size: 2rem; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .support-chat { width: 100%; right: 0; bottom: 0; height: 70vh; border-radius: 16px 16px 0 0; }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #fff;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 3000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast.success { background: #2ecc71; }
+        .toast.error { background: #e74c3c; }
+
+        /* Table Styles */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .data-table th {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .data-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-badge.active { background: rgba(46, 204, 113, 0.1); color: #2ecc71; }
+        .status-badge.pending { background: rgba(230, 126, 34, 0.1); color: #e67e22; }
+        .status-badge.resolved { background: rgba(52, 152, 219, 0.1); color: #3498db; }
+
+        .action-btns {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .action-btn.view { background: rgba(52, 152, 219, 0.1); color: #3498db; }
+        .action-btn.reply { background: rgba(46, 204, 113, 0.1); color: #2ecc71; }
+        .action-btn.delete { background: rgba(231, 76, 60, 0.1); color: #e74c3c; }
+
+        .action-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Message Detail View */
+        .message-detail {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2500;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .message-detail.active {
+            display: flex;
+        }
+
+        .message-detail-content {
+            background: var(--white);
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message-detail-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .message-detail-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .message-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .message-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .message-meta-item label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .message-meta-item span {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .message-text {
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        .message-reply-area {
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+            background: #f8f9fa;
+        }
+
+        .message-reply-area textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            resize: vertical;
+            min-height: 100px;
+            font-family: 'Inter', sans-serif;
+            margin-bottom: 1rem;
+        }
+
+        .message-reply-area textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Website -->
+    <div id="mainWebsite">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="#" class="logo">Greenwood<span>.</span></a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#rates">Rates</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <button class="btn btn-outline" onclick="openModal('loginModal')">
+                        <i class="fas fa-lock"></i> Login
+                    </button>
+                    <button class="btn btn-primary" onclick="openModal('registerModal')">
+                        Open Account
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1920&h=1080&fit=crop" alt="Banking" class="hero-image">
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <div class="hero-badge">Member Owned Since 1952</div>
+                <h1>Your Financial<br>Partner for Life</h1>
+                <p>We believe banking should be personal, transparent, and designed around your goals. Experience the Greenwood difference today.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-accent btn-large" onclick="openModal('registerModal'); return false;">
+                        <i class="fas fa-user-plus"></i> Become a Member
+                    </a>
+                    <a href="#services" class="btn btn-outline btn-large" style="border-color: white; color: white;">
+                        <i class="fas fa-arrow-right"></i> Explore Services
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rates Section -->
+        <section class="section rates-section" id="rates">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <span class="section-label">Competitive Rates</span>
+                    <h2 class="section-title">Grow Your Money Faster</h2>
+                    <p class="section-subtitle">Discover our competitive rates designed to help your money work harder for you</p>
+                </div>
+                <div class="rates-grid">
+                    <div class="rate-card fade-in">
+                        <div class="rate-icon"><i class="fas fa-piggy-bank"></i></div>
+                        <div class="rate-value">4.25%</div>
+                        <div class="rate-label">High-Yield Savings</div>
+                        <div class="rate-apr">APY*</div>
+                    </div>
+                    <div class="rate-card fade-in">
+                        <div class="rate-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="rate-value">5.15%</div>
+                        <div class="rate-label">12-Month CD</div>
+                        <div class="rate-apr">APY*</div>
+                    </div>
+                    <div class="rate-card fade-in">
+                        <div class="rate-icon"><i class="fas fa-car"></i></div>
+                        <div class="rate-value">3.99%</div>
+                        <div class="rate-label">Auto Loans</div>
+                        <div class="rate-apr">APR*</div>
+                    </div>
+                    <div class="rate-card fade-in">
+                        <div class="rate-icon"><i class="fas fa-home"></i></div>
+                        <div class="rate-value">5.75%</div>
+                        <div class="rate-label">Mortgage</div>
+                        <div class="rate-apr">Fixed APR*</div>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 2rem; color: var(--text-light); font-size: 0.85rem;">*Annual Percentage Yield/Rates. Terms and conditions apply. Rates subject to change.</p>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="section" id="services">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <span class="section-label">Our Services</span>
+                    <h2 class="section-title">How Can We Help You?</h2>
+                    <p class="section-subtitle">Comprehensive banking solutions tailored to your unique financial journey</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&h=400&fit=crop" alt="Savings" class="service-image">
+                        <div class="service-content">
+                            <div class="service-icon"><i class="fas fa-wallet"></i></div>
+                            <h3>Deposit Accounts</h3>
+                            <p>Secure your money with our high-yield savings and checking accounts designed for maximum growth and flexibility.</p>
+                            <a href="#" class="link-arrow">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="service-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop" alt="Credit Cards" class="service-image">
+                        <div class="service-content">
+                            <div class="service-icon"><i class="fas fa-credit-card"></i></div>
+                            <h3>Credit Cards</h3>
+                            <p>Find the perfect credit card for your lifestyle with competitive rates, rewards, and no hidden fees.</p>
+                            <a href="#" class="link-arrow">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="service-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=400&fit=crop" alt="Loans" class="service-image">
+                        <div class="service-content">
+                            <div class="service-icon"><i class="fas fa-hand-holding-dollar"></i></div>
+                            <h3>Personal Loans</h3>
+                            <p>Get competitive rates on personal, auto, and home loans tailored to help you achieve your financial goals.</p>
+                            <a href="#" class="link-arrow">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="service-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=400&fit=crop" alt="Business" class="service-image">
+                        <div class="service-content">
+                            <div class="service-icon"><i class="fas fa-briefcase"></i></div>
+                            <h3>Business Banking</h3>
+                            <p>Comprehensive banking solutions designed to help your business thrive, from startup to enterprise.</p>
+                            <a href="#" class="link-arrow">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="service-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=600&h=400&fit=crop" alt="Wealth" class="service-image">
+                        <div class="service-content">
+                            <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                            <h3>Wealth Management</h3>
+                            <p>Plan for your future with our expert investment and retirement planning services tailored to your goals.</p>
+                            <a href="#" class="link-arrow">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="service-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop" alt="Insurance" class="service-image">
+                        <div class="service-content">
+                            <div class="service-icon"><i class="fas fa-shield-halved"></i></div>
+                            <h3>Insurance</h3>
+                            <p>Protect what matters most with our comprehensive insurance solutions for life, home, and auto.</p>
+                            <a href="#" class="link-arrow">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Promo Section -->
+        <section class="section promo-section">
+            <div class="container">
+                <div class="promo-grid">
+                    <div class="promo-content">
+                        <span class="section-label" style="color: var(--accent);">Limited Time Offer</span>
+                        <h2>Get $300* With a New Checking Account</h2>
+                        <p>Open any new checking account today and receive a $300 bonus to help kickstart your financial journey with Greenwood.</p>
+                        <ul class="promo-features">
+                            <li><i class="fas fa-check-circle"></i> No minimum balance required</li>
+                            <li><i class="fas fa-check-circle"></i> Free online and mobile banking</li>
+                            <li><i class="fas fa-check-circle"></i> No monthly maintenance fees</li>
+                            <li><i class="fas fa-check-circle"></i> Access to 55,000+ ATMs nationwide</li>
+                        </ul>
+                        <button class="btn btn-accent btn-large" onclick="openModal('registerModal')">
+                            <i class="fas fa-gift"></i> Claim Your Bonus
+                        </button>
+                        <p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.7;">*Terms and conditions apply. Offer expires soon.</p>
+                    </div>
+                    <div class="promo-image">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&h=600&fit=crop" alt="Happy customer">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section" id="about">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <span class="section-label">Why Choose Us</span>
+                    <h2 class="section-title">Building Strength Together</h2>
+                    <p class="section-subtitle">Greenwood Bank is built on the foundation of providing exceptional service at every step of your financial journey</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-item fade-in">
+                        <div class="feature-icon"><i class="fas fa-percentage"></i></div>
+                        <h3>Competitive Rates</h3>
+                        <p>Better rates on savings, loans, and credit cards designed to maximize your financial growth and minimize costs.</p>
+                    </div>
+                    <div class="feature-item fade-in">
+                        <div class="feature-icon"><i class="fas fa-users"></i></div>
+                        <h3>Member-Focused</h3>
+                        <p>We're owned by our members, not shareholders. Your success is our priority, and we prove it every day.</p>
+                    </div>
+                    <div class="feature-item fade-in">
+                        <div class="feature-icon"><i class="fas fa-heart"></i></div>
+                        <h3>Community Committed</h3>
+                        <p>Supporting local communities and causes that matter to our members through investments and volunteer work.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- App Section -->
+        <section class="section app-section">
+            <div class="container">
+                <div class="app-grid">
+                    <div class="app-mockup fade-in">
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&h=800&fit=crop" alt="Mobile App">
+                    </div>
+                    <div class="fade-in">
+                        <span class="section-label">Mobile Banking</span>
+                        <h2 class="section-title">Banking Made Simple</h2>
+                        <p style="margin-bottom: 1.5rem; color: var(--text-light);">Experience the future of mobile banking with our award-winning app. Manage your finances anytime, anywhere with bank-level security.</p>
+                        
+                        <div class="app-features">
+                            <div class="app-feature">
+                                <i class="fas fa-wifi"></i>
+                                <div>
+                                    <h4>Works Offline</h4>
+                                    <p style="font-size: 0.9rem; color: var(--text-light);">Access basic features without internet</p>
+                                </div>
+                            </div>
+                            <div class="app-feature">
+                                <i class="fas fa-bolt"></i>
+                                <div>
+                                    <h4>Lightning Fast</h4>
+                                    <p style="font-size: 0.9rem; color: var(--text-light);">Instant loading & responses</p>
+                                </div>
+                            </div>
+                            <div class="app-feature">
+                                <i class="fas fa-bell"></i>
+                                <div>
+                                    <h4>Smart Alerts</h4>
+                                    <p style="font-size: 0.9rem; color: var(--text-light);">Stay updated on transactions</p>
+                                </div>
+                            </div>
+                            <div class="app-feature">
+                                <i class="fas fa-lock"></i>
+                                <div>
+                                    <h4>Bank-Level Security</h4>
+                                    <p style="font-size: 0.9rem; color: var(--text-light);">256-bit encryption protection</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                            <button class="btn btn-primary">
+                                <i class="fab fa-apple"></i> App Store
+                            </button>
+                            <button class="btn btn-outline">
+                                <i class="fab fa-google-play"></i> Google Play
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <span class="section-label">Testimonials</span>
+                    <h2 class="section-title">Hear From Our Members</h2>
+                    <p class="section-subtitle">Real stories from real members who trust Greenwood with their financial future</p>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card fade-in">
+                        <p class="testimonial-text">"I am impressed with the customer service and speed of transactions. Switching to Greenwood was the best financial decision I've made."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">SM</div>
+                            <div class="author-info">
+                                <h4>Sarah Morris</h4>
+                                <p>Member since 2019</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card fade-in">
+                        <p class="testimonial-text">"Excellent service and competitive rates. The mobile app is fantastic and makes managing my business finances incredibly easy."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">JD</div>
+                            <div class="author-info">
+                                <h4>James Davis</h4>
+                                <p>Business Owner</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card fade-in">
+                        <p class="testimonial-text">"The wealth management team helped me plan for retirement better than I ever could have on my own. Truly personalized service."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">EJ</div>
+                            <div class="author-info">
+                                <h4>Emily Johnson</h4>
+                                <p>Member since 2015</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer" id="contact">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <a href="#" class="logo">Greenwood<span>.</span></a>
+                        <p>Building financial strength together since 1952. Member-owned, community-focused, and dedicated to your success.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#">Personal Banking</a></li>
+                            <li><a href="#">Business Banking</a></li>
+                            <li><a href="#">Loans & Mortgages</a></li>
+                            <li><a href="#">Credit Cards</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Branch Locator</a></li>
+                            <li><a href="#">Report Fraud</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><i class="fas fa-clock" style="margin-right: 0.5rem;"></i> Mon-Fri: 9AM-5PM</li>
+                            <li><i class="fas fa-phone" style="margin-right: 0.5rem;"></i> 1-800-GREENWD</li>
+                            <li><i class="fas fa-envelope" style="margin-right: 0.5rem;"></i> help@greenwood.bank</li>
+                            <li><i class="fas fa-map-marker-alt" style="margin-right: 0.5rem;"></i> 123 Finance St, NY</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Greenwood Bank. All rights reserved. Federally insured by NCUA.</p>
+                    <div style="display: flex; gap: 2rem;">
+                        <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem;">Privacy Policy</a>
+                        <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem;">Terms of Service</a>
+                        <button onclick="openModal('adminLoginModal')" style="background: none; border: none; color: var(--accent); cursor: pointer; font-size: 0.9rem;">Admin Portal</button>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Support Chat Button -->
+        <button class="fab" id="chatFab" onclick="toggleChat()">
+            <i class="fas fa-comments"></i>
+        </button>
+
+        <!-- Support Chat Window -->
+        <div class="support-chat" id="supportChat">
+            <div class="chat-header">
+                <div>
+                    <h3><i class="fas fa-headset"></i> Support Chat</h3>
+                    <p style="font-size: 0.85rem; opacity: 0.8;">We typically reply in minutes</p>
+                </div>
+                <button class="chat-close" onclick="toggleChat()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-message received">
+                    <strong>Greenwood Support</strong><br>
+                    Hello! Welcome to Greenwood Bank. How can I help you today?
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Type your message..." onkeypress="handleChatKey(event)">
+                <button class="chat-send" onclick="sendChatMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('loginModal')">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h2>Welcome Back</h2>
+                <p>Sign in to your Greenwood account</p>
+            </div>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="you@example.com" required id="loginEmail">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Enter your password" required id="loginPassword">
+                </div>
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox"> Remember me
+                    </label>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" id="loginBtn">
+                    <span>Sign In</span>
+                </button>
+            </form>
+            <div class="modal-footer">
+                Don't have an account? <a href="#" onclick="switchModal('loginModal', 'registerModal')">Open one today</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('registerModal')">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h2>Join Greenwood</h2>
+                <p>Start your financial journey with us</p>
+            </div>
+            <form onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="you@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" placeholder="(555) 123-4567">
+                </div>
+                <div class="form-group">
+                    <label>Create Password</label>
+                    <input type="password" placeholder="Min. 8 characters" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">
+                    <span>Create Account</span>
+                </button>
+            </form>
+            <div class="modal-footer">
+                Already a member? <a href="#" onclick="switchModal('registerModal', 'loginModal')">Sign in</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div class="modal" id="adminLoginModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('adminLoginModal')">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h2><i class="fas fa-shield-alt" style="color: var(--accent);"></i> Admin Portal</h2>
+                <p>Secure access for authorized personnel only</p>
+            </div>
+            <form onsubmit="handleAdminLogin(event)">
+                <div class="form-group">
+                    <label>Admin ID</label>
+                    <input type="text" placeholder="Enter admin ID" required id="adminId">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Enter secure password" required id="adminPassword">
+                </div>
+                <div class="form-group">
+                    <label>Department</label>
+                    <select required>
+                        <option value="">Select Department</option>
+                        <option value="support">Customer Support</option>
+                        <option value="admin">System Administration</option>
+                        <option value="manager">Branch Manager</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">
+                    <span>Access Dashboard</span>
+                </button>
+            </form>
+            <div class="modal-footer" style="color: #e74c3c; font-size: 0.85rem;">
+                <i class="fas fa-exclamation-triangle"></i> Authorized access only. Activity is monitored.
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div class="dashboard" id="adminDashboard">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="#" class="logo">Greenwood<span>.</span></a>
+                <div class="user-info">
+                    <div class="user-avatar">AD</div>
+                    <div class="user-details">
+                        <h4>Admin User</h4>
+                        <p>Customer Support</p>
+                    </div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Main</div>
+                    <ul>
+                        <li><a href="#" class="active" onclick="showDashboardSection('overview')"><i class="fas fa-home"></i> Overview</a></li>
+                        <li><a href="#" onclick="showDashboardSection('messages')"><i class="fas fa-envelope"></i> Messages <span style="background: #e74c3c; color: white; padding: 0.1rem 0.5rem; border-radius: 10px; font-size: 0.75rem; margin-left: auto;">3</span></a></li>
+                        <li><a href="#" onclick="showDashboardSection('users')"><i class="fas fa-users"></i> Members</a></li>
+                        <li><a href="#" onclick="showDashboardSection('accounts')"><i class="fas fa-university"></i> Accounts</a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Support</div>
+                    <ul>
+                        <li><a href="#" onclick="showDashboardSection('tickets')"><i class="fas fa-ticket-alt"></i> Tickets</a></li>
+                        <li><a href="#" onclick="showDashboardSection('chat')"><i class="fas fa-comments"></i> Live Chat</a></li>
+                        <li><a href="#" onclick="showDashboardSection('faq')"><i class="fas fa-question-circle"></i> FAQ Manager</a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">System</div>
+                    <ul>
+                        <li><a href="#" onclick="showDashboardSection('settings')"><i class="fas fa-cog"></i> Settings</a></li>
+                        <li><a href="#" onclick="showDashboardSection('logs')"><i class="fas fa-file-alt"></i> Activity Logs</a></li>
+                        <li><a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search members, tickets...">
+                </div>
+                <div class="top-bar-actions">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <button class="notification-btn">
+                        <i class="fas fa-envelope"></i>
+                        <span class="notification-badge">5</span>
+                    </button>
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <div class="user-avatar" style="width: 35px; height: 35px; font-size: 0.9rem;">AD</div>
+                        <span style="font-weight: 600;">Admin</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overview Section -->
+            <div id="overviewSection">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue"><i class="fas fa-users"></i></div>
+                        <div class="stat-info">
+                            <h3>12,458</h3>
+                            <p>Total Members</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green"><i class="fas fa-check-circle"></i></div>
+                        <div class="stat-info">
+                            <h3>98.2%</h3>
+                            <p>Satisfaction Rate</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange"><i class="fas fa-clock"></i></div>
+                        <div class="stat-info">
+                            <h3>24</h3>
+                            <p>Pending Tickets</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon red"><i class="fas fa-comments"></i></div>
+                        <div class="stat-info">
+                            <h3>5</h3>
+                            <p>Active Chats</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-envelope" style="color: var(--accent); margin-right: 0.5rem;"></i> Recent Messages</h3>
+                            <a href="#" class="link-arrow" onclick="showDashboardSection('messages')">View All <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="card-body">
+                            <div class="message-list">
+                                <div class="message-item unread" onclick="openMessageDetail(1)">
+                                    <div class="message-avatar">SM</div>
+                                    <div class="message-content">
+                                        <div class="message-header">
+                                            <h4>Sarah Morris</h4>
+                                            <span class="message-time">2 min ago</span>
+                                        </div>
+                                        <p class="message-preview">I need help with my recent wire transfer...</p>
+                                    </div>
+                                    <span class="message-badge">New</span>
+                                </div>
+                                <div class="message-item unread" onclick="openMessageDetail(2)">
+                                    <div class="message-avatar">JD</div>
+                                    <div class="message-content">
+                                        <div class="message-header">
+                                            <h4>James Davis</h4>
+                                            <span class="message-time">15 min ago</span>
+                                        </div>
+                                        <p class="message-preview">Question about my mortgage application status...</p>
+                                    </div>
+                                    <span class="message-badge">New</span>
+                                </div>
+                                <div class="message-item" onclick="openMessageDetail(3)">
+                                    <div class="message-avatar">EJ</div>
+                                    <div class="message-content">
+                                        <div class="message-header">
+                                            <h4>Emily Johnson</h4>
+                                            <span class="message-time">1 hour ago</span>
+                                        </div>
+                                        <p class="message-preview">Thank you for the quick response yesterday...</p>
+                                    </div>
+                                </div>
+                                <div class="message-item unread" onclick="openMessageDetail(4)">
+                                    <div class="message-avatar">RW</div>
+                                    <div class="message-content">
+                                        <div class="message-header">
+                                            <h4>Robert Wilson</h4>
+                                            <span class="message-time">2 hours ago</span>
+                                        </div>
+                                        <p class="message-preview">Unable to access my online banking account...</p>
+                                    </div>
+                                    <span class="message-badge">New</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-ticket-alt" style="color: var(--accent); margin-right: 0.5rem;"></i> Ticket Status</h3>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <span>Open</span>
+                                        <span style="font-weight: 600;">24</span>
+                                    </div>
+                                    <div style="height: 8px; background: #eee; border-radius: 4px; overflow: hidden;">
+                                        <div style="width: 60%; height: 100%; background: #e67e22; border-radius: 4px;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <span>In Progress</span>
+                                        <span style="font-weight: 600;">12</span>
+                                    </div>
+                                    <div style="height: 8px; background: #eee; border-radius: 4px; overflow: hidden;">
+                                        <div style="width: 30%; height: 100%; background: #3498db; border-radius: 4px;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <span>Resolved Today</span>
+                                        <span style="font-weight: 600;">48</span>
+                                    </div>
+                                    <div style="height: 8px; background: #eee; border-radius: 4px; overflow: hidden;">
+                                        <div style="width: 80%; height: 100%; background: #2ecc71; border-radius: 4px;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <span>Escalated</span>
+                                        <span style="font-weight: 600;">3</span>
+                                    </div>
+                                    <div style="height: 8px; background: #eee; border-radius: 4px; overflow: hidden;">
+                                        <div style="width: 8%; height: 100%; background: #e74c3c; border-radius: 4px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Messages Section -->
+            <div id="messagesSection" style="display: none;">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>All Messages</h3>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
+                                <i class="fas fa-filter"></i> Filter
+                            </button>
+                            <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
+                                <i class="fas fa-plus"></i> New Message
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Sender</th>
+                                    <th>Subject</th>
+                                    <th>Status</th>
+                                    <th>Time</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                            <div class="message-avatar" style="width: 35px; height: 35px; font-size: 0.85rem;">SM</div>
+                                            <span>Sarah Morris</span>
+                                        </div>
+                                    </td>
+                                    <td>Wire Transfer Issue</td>
+                                    <td><span class="status-badge pending">Pending</span></td>
+                                    <td>2 min ago</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="action-btn view" onclick="openMessageDetail(1)" title="View"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn reply" title="Reply"><i class="fas fa-reply"></i></button>
+                                            <button class="action-btn delete" title="Delete"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                            <div class="message-avatar" style="width: 35px; height: 35px; font-size: 0.85rem;">JD</div>
+                                            <span>James Davis</span>
+                                        </div>
+                                    </td>
+                                    <td>Mortgage Application Status</td>
+                                    <td><span class="status-badge pending">Pending</span></td>
+                                    <td>15 min ago</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="action-btn view" onclick="openMessageDetail(2)" title="View"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn reply" title="Reply"><i class="fas fa-reply"></i></button>
+                                            <button class="action-btn delete" title="Delete"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                            <div class="message-avatar" style="width: 35px; height: 35px; font-size: 0.85rem;">EJ</div>
+                                            <span>Emily Johnson</span>
+                                        </div>
+                                    </td>
+                                    <td>Thank You Note</td>
+                                    <td><span class="status-badge resolved">Resolved</span></td>
+                                    <td>1 hour ago</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="action-btn view" onclick="openMessageDetail(3)" title="View"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn reply" title="Reply"><i class="fas fa-reply"></i></button>
+                                            <button class="action-btn delete" title="Delete"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                            <div class="message-avatar" style="width: 35px; height: 35px; font-size: 0.85rem;">RW</div>
+                                            <span>Robert Wilson</span>
+                                        </div>
+                                    </td>
+                                    <td>Account Access Problem</td>
+                                    <td><span class="status-badge active">Active</span></td>
+                                    <td>2 hours ago</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="action-btn view" onclick="openMessageDetail(4)" title="View"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn reply" title="Reply"><i class="fas fa-reply"></i></button>
+                                            <button class="action-btn delete" title="Delete"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Sections Placeholder -->
+            <div id="otherSections" style="display: none;">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>Section Under Development</h3>
+                    </div>
+                    <div class="card-body" style="text-align: center; padding: 3rem;">
+                        <i class="fas fa-tools" style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i>
+                        <p>This section is currently being built. Check back soon!</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Message Detail Modal -->
+    <div class="message-detail" id="messageDetail">
+        <div class="message-detail-content">
+            <div class="message-detail-header">
+                <h3>Message Details</h3>
+                <button class="modal-close" onclick="closeMessageDetail()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="message-detail-body">
+                <div class="message-meta">
+                    <div class="message-meta-item">
+                        <label>From</label>
+                        <span id="detailSender">Sarah Morris</span>
+                    </div>
+                    <div class="message-meta-item">
+                        <label>Email</label>
+                        <span id="detailEmail">sarah.morris@email.com</span>
+                    </div>
+                    <div class="message-meta-item">
+                        <label>Date</label>
+                        <span id="detailDate">Apr 18, 2026 - 10:30 AM</span>
+                    </div>
+                    <div class="message-meta-item">
+                        <label>Status</label>
+                        <span class="status-badge pending" id="detailStatus">Pending</span>
+                    </div>
+                </div>
+                <div class="message-text" id="detailText">
+                    I need help with my recent wire transfer. I sent $5,000 to my contractor three days ago, but they haven't received it yet. The transaction ID is WT-2026-0415-001. Can you please check the status and let me know if there's an issue? This is urgent as I need to complete my home renovation project.
+                </div>
+            </div>
+            <div class="message-reply-area">
+                <textarea placeholder="Type your reply here..." id="replyText"></textarea>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline" style="padding: 0.5rem 1rem;">
+                            <i class="fas fa-paperclip"></i> Attach
+                        </button>
+                        <button class="btn btn-outline" style="padding: 0.5rem 1rem;">
+                            <i class="fas fa-template"></i> Template
+                        </button>
+                    </div>
+                    <button class="btn btn-primary" onclick="sendReply()">
+                        <i class="fas fa-paper-plane"></i> Send Reply
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Modal Functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function switchModal(closeId, openId) {
+            closeModal(closeId);
+            setTimeout(() => openModal(openId), 300);
+        }
+
+        // Close modal on outside click
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal(modal.id);
+            });
+        });
+
+        // Login Handler
+        function handleLogin(e) {
+            e.preventDefault();
+            const btn = document.getElementById('loginBtn');
+            const originalContent = btn.innerHTML;
+            
+            btn.innerHTML = '<div class="spinner"></div>';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+                closeModal('loginModal');
+                showToast('Welcome back! You are now logged in.', 'success');
+            }, 1500);
+        }
+
+        // Register Handler
+        function handleRegister(e) {
+            e.preventDefault();
+            showToast('Account created successfully! Welcome to Greenwood.', 'success');
+            closeModal('registerModal');
+        }
+
+        // Admin Login Handler
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const adminId = document.getElementById('adminId').value;
+            const password = document.getElementById('adminPassword').value;
+
+            // Simple validation (in real app, this would be server-side)
+            if (adminId && password) {
+                closeModal('adminLoginModal');
+                document.getElementById('mainWebsite').style.display = 'none';
+                document.getElementById('adminDashboard').classList.add('active');
+                showToast('Admin access granted. Welcome to the dashboard.', 'success');
+            }
+        }
+
+        // Logout
+        function logout() {
+            document.getElementById('adminDashboard').classList.remove('active');
+            document.getElementById('mainWebsite').style.display = 'block';
+            window.scrollTo(0, 0);
+            showToast('You have been logged out successfully.', 'success');
+        }
+
+        // Dashboard Navigation
+        function showDashboardSection(section) {
+            // Hide all sections
+            document.getElementById('overviewSection').style.display = 'none';
+            document.getElementById('messagesSection').style.display = 'none';
+            document.getElementById('otherSections').style.display = 'none';
+
+            // Show selected section
+            if (section === 'overview') {
+                document.getElementById('overviewSection').style.display = 'block';
+            } else if (section === 'messages') {
+                document.getElementById('messagesSection').style.display = 'block';
+            } else {
+                document.getElementById('otherSections').style.display = 'block';
+            }
+
+            // Update active nav
+            document.querySelectorAll('.sidebar-nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.closest('a').classList.add('active');
+        }
+
+        // Message Detail
+        const messageData = {
+            1: {
+                sender: 'Sarah Morris',
+                email: 'sarah.morris@email.com',
+                date: 'Apr 18, 2026 - 10:30 AM',
+                status: 'Pending',
+                text: 'I need help with my recent wire transfer. I sent $5,000 to my contractor three days ago, but they haven\'t received it yet. The transaction ID is WT-2026-0415-001. Can you please check the status and let me know if there\'s an issue? This is urgent as I need to complete my home renovation project.'
+            },
+            2: {
+                sender: 'James Davis',
+                email: 'james.davis@company.com',
+                date: 'Apr 18, 2026 - 9:45 AM',
+                status: 'Pending',
+                text: 'I submitted my mortgage application two weeks ago and haven\'t heard back. I\'m wondering about the status and if you need any additional documentation from me. The application reference is MORT-2026-0892. Please let me know as I\'m trying to close on my new home by the end of the month.'
+            },
+            3: {
+                sender: 'Emily Johnson',
+                email: 'emily.j@email.com',
+                date: 'Apr 18, 2026 - 8:15 AM',
+                status: 'Resolved',
+                text: 'Thank you so much for the quick response yesterday regarding my account question. Your support team was incredibly helpful and resolved my issue within minutes. I really appreciate the excellent service!'
+            },
+            4: {
+                sender: 'Robert Wilson',
+                email: 'rwilson@email.com',
+                date: 'Apr 17, 2026 - 4:30 PM',
+                status: 'Active',
+                text: 'I\'m unable to access my online banking account. It keeps saying my password is incorrect even though I\'m sure it\'s right. I tried resetting it but never received the email. Can you please help me regain access? I need to check my balance urgently.'
+            }
+        };
+
+        function openMessageDetail(id) {
+            const msg = messageData[id];
+            if (msg) {
+                document.getElementById('detailSender').textContent = msg.sender;
+                document.getElementById('detailEmail').textContent = msg.email;
+                document.getElementById('detailDate').textContent = msg.date;
+                document.getElementById('detailStatus').textContent = msg.status;
+                document.getElementById('detailStatus').className = 'status-badge ' + msg.status.toLowerCase();
+                document.getElementById('detailText').textContent = msg.text;
+                document.getElementById('messageDetail').classList.add('active');
+            }
+        }
+
+        function closeMessageDetail() {
+            document.getElementById('messageDetail').classList.remove('active');
+        }
+
+        function sendReply() {
+            const replyText = document.getElementById('replyText').value;
+            if (replyText.trim()) {
+                showToast('Reply sent successfully!', 'success');
+                document.getElementById('replyText').value = '';
+                closeMessageDetail();
+            } else {
+                showToast('Please type a reply before sending.', 'error');
+            }
+        }
+
+        // Support Chat
+        function toggleChat() {
+            const chat = document.getElementById('supportChat');
+            const fab = document.getElementById('chatFab');
+            
+            if (chat.classList.contains('active')) {
+                chat.classList.remove('active');
+                fab.classList.remove('hidden');
+            } else {
+                chat.classList.add('active');
+                fab.classList.add('hidden');
+            }
+        }
+
+        function handleChatKey(e) {
+            if (e.key === 'Enter') sendChatMessage();
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chatInput');
+            const messages = document.getElementById('chatMessages');
+            const text = input.value.trim();
+
+            if (text) {
+                // Add user message
+                const userMsg = document.createElement('div');
+                userMsg.className = 'chat-message sent';
+                userMsg.innerHTML = `<strong>You</strong><br>${text}`;
+                messages.appendChild(userMsg);
+
+                input.value = '';
+                messages.scrollTop = messages.scrollHeight;
+
+                // Simulate support response
+                setTimeout(() => {
+                    const supportMsg = document.createElement('div');
+                    supportMsg.className = 'chat-message received';
+                    supportMsg.innerHTML = `<strong>Greenwood Support</strong><br>Thank you for reaching out! An agent will be with you shortly. In the meantime, is there anything specific I can help you with?`;
+                    messages.appendChild(supportMsg);
+                    messages.scrollTop = messages.scrollHeight;
+                }, 1000);
+            }
+        }
+
+        // Toast Notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast ' + type;
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

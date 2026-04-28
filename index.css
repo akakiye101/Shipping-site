@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --canvas: #ffffff
+    --surface: #0D1219;
+    --surface-elevated: #141B24;
+    --text-primary: #F0F2F5;
+    --text-secondary: rgba(240, 242, 245, 0.65);
+    --text-muted: rgba(240, 242, 245, 0.35);
+    --accent: #2A6BFF;
+    --accent-glow: rgba(42, 107, 255, 0.35);
+    --route-line: rgba(42, 107, 255, 0.08);
+    --route-active: #2A6BFF;
+    --node-dot: rgba(42, 107, 255, 0.4);
+    --node-glow: rgba(42, 107, 255, 0.15);
+    --status-delivered: #00C853;
+    --status-transit: #FFB300;
+    --status-hold: #FF3D00;
+    --border-subtle: rgba(240, 242, 245, 0.06);
+    --border-focus: rgba(42, 107, 255, 0.5);
+    --input-bg: rgba(13, 18, 25, 0.8);
+    --input-border: rgba(240, 242, 245, 0.1);
+    --particle: rgba(42, 107, 255, 0.6);
+    --trail: rgba(42, 107, 255, 0.15);
+    --transition-overlay: #060A0F;
+
+    --background: 216 50% 3%;
+    --foreground: 220 14% 96%;
+    --card: 216 33% 7%;
+    --card-foreground: 220 14% 96%;
+    --popover: 216 33% 7%;
+    --popover-foreground: 220 14% 96%;
+    --primary: 220 100% 58%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 216 20% 12%;
+    --secondary-foreground: 220 14% 96%;
+    --muted: 216 20% 12%;
+    --muted-foreground: 220 14% 60%;
+    --accent-hsl: 220 100% 58%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 14 100% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 14% 15%;
+    --input: 220 14% 15%;
+    --ring: 220 100% 58%;
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    background-color: var(--canvas);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    height: 24px;
+    padding: 0 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .glass-input {
+    background: var(--input-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .glass-input:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(42, 107, 255, 0.1);
+  }
+
+  .glass-input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .card-surface {
+    background: var(--surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+  }
+
+  .card-elevated {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--text-primary);
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    background: #3a7bff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(42, 107, 255, 0.3);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .btn-ghost:hover {
+    color: var(--text-secondary);
+    border-color: var(--text-muted);
+    background: var(--surface-elevated);
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, var(--accent), #5B9AFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
